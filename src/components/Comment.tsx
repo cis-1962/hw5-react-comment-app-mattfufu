@@ -38,8 +38,11 @@ export default function Comment({ name, body }: Comment) {
         >
           {body}
         </div>
+        <div style={{ outline: '1px solid black', padding: '8px', flexGrow: 1 }}>
+          <button>Reply</button>
+        </div >
       </div>
-      <Vote /> {/* This will remain aligned to the right */}
+      <Vote /> 
     </div>
   );
 }
