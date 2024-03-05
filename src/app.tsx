@@ -14,6 +14,7 @@ function App() {
   const[commentName, setCommentName] = useState<string | null>('');
   const[commentBody, setCommentBody] = useState<string | null>('');
   const [comments, setComments] = useState<Comment[] | null>([]); 
+  const validPost = commentName.length > 0 && commentBody.length > 0;
 
   return (
     <>
@@ -21,7 +22,7 @@ function App() {
       <div style={{ display: 'flex', flexDirection: 'column', outline: '1px solid black', marginBottom: '20px'}}>
         <input placeholder = "Name" onChange={(evt) => setCommentName(evt.target.value)} value={commentName}/>
         <input onChange={(evt) => setCommentBody(evt.target.value)} value={commentBody}/>
-        <button onClick = {() => {
+        <button disabled={!validPost} onClick = {() => {
           id++;
           const comment: Comment = {id: id, name: commentName, body: commentBody};
           setComments([comment, ...comments]);
