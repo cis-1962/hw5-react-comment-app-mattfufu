@@ -40,6 +40,7 @@ export default function Comment({ name, body }: Comment) {
         </div>
         <div style={{ outline: '1px solid black', padding: '8px', flexGrow: 1 }}>
           <button>Reply</button>
+          <input/>
         </div >
       </div>
       <Vote /> 
