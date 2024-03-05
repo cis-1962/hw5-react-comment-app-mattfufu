@@ -1,16 +1,45 @@
 import Vote from './Vote.tsx';
 
 type Comment = {
-    name: string,
-    body: string
-  }
+  name: string;
+  body: string;
+};
 
-export default function Comment({name, body}: Comment) {
-    return (
-        <div style={{ display: 'flex', flexDirection: 'column', outline: '1px solid black', marginBottom: '20px' }}>
-            <div style={{ outline: '1px solid black' }}>{name}</div>
-            <div style={{ outline: '1px solid black' }}>{body}</div>
-            <Vote />
+export default function Comment({ name, body }: Comment) {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        outline: '1px solid black',
+        marginBottom: '20px',
+      }}
+    >
+      <div
+        style={{
+          flexGrow: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          marginRight: '20px',
+        }}
+      >
+        <div
+          style={{
+            outline: '1px solid black',
+            padding: '8px',
+            marginBottom: '10px',
+          }}
+        >
+          {name}
         </div>
-    )
+        <div
+          style={{ outline: '1px solid black', padding: '8px', flexGrow: 1 }}
+        >
+          {body}
+        </div>
+      </div>
+      <Vote /> {/* This will remain aligned to the right */}
+    </div>
+  );
 }
