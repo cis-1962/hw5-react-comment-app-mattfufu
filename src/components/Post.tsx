@@ -1,11 +1,6 @@
 import Vote from './Vote.tsx';
 
-type Comment = {
-  name: string;
-  body: string;
-};
-
-export default function Comment({ name, body }: Comment) {
+export default function Post({ name, body }: {name: string, body: string}) {
   return (
     <div
       style={{

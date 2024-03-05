@@ -1,20 +1,17 @@
 import { useState } from 'react';
+
 import './app.css';
+import Form from './components/Form.tsx';
+import Post from './components/Post.tsx';
 
-import Comment from './components/Comment.tsx';
-
-let id = -1;
-type Comment = {
+type Post = {
   id: number;
   name: string;
   body: string;
 };
 
 function App() {
-  const [commentName, setCommentName] = useState<string | null>('');
-  const [commentBody, setCommentBody] = useState<string | null>('');
-  const [comments, setComments] = useState<Comment[] | null>([]);
-  const validPost = commentName.length > 0 && commentBody.length > 0;
+  const [posts, setPosts] = useState<Post[] | null>([]);
 
   return (
     <>
@@ -27,35 +24,11 @@ function App() {
           marginBottom: '20px',
         }}
       >
-        <input
-          placeholder="Name"
-          onChange={(evt) => setCommentName(evt.target.value)}
-          value={commentName}
-        />
-        <input
-          onChange={(evt) => setCommentBody(evt.target.value)}
-          value={commentBody}
-        />
-        <button
-          disabled={!validPost}
-          onClick={() => {
-            id++;
-            const comment: Comment = {
-              id: id,
-              name: commentName,
-              body: commentBody,
-            };
-            setComments([comment, ...comments]);
-            setCommentName('');
-            setCommentBody('');
-          }}
-        >
-          Submit
-        </button>
+        <Form parentPosts={posts} updateParentPosts={setPosts} />
       </div>
       <div>
-        {comments.map((comment: Comment) => (
-          <Comment key={comment.id} name={comment.name} body={comment.body} />
+        {posts.map((post: Post) => (
+          <Post key={post.id} name={post.name} body={post.body} />
         ))}
       </div>
     </>
