@@ -16,16 +16,7 @@ function App() {
   return (
     <>
       <h1>React Comment App</h1>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          outline: '1px solid black',
-          marginBottom: '20px',
-        }}
-      >
-        <Form parentPosts={posts} updateParentPosts={setPosts} />
-      </div>
+      <Form parentPosts={posts} updateParentPosts={setPosts} />
       <div>
         {posts.map((post: Post) => (
           <Post key={post.id} name={post.name} body={post.body} />

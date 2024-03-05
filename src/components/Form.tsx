@@ -11,7 +11,14 @@ export default function Form({ parentPosts, updateParentPosts }) {
   const [post, setPost] = useState<Post | null>({ id: -1, name: '', body: '' });
 
   return (
-    <>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        outline: '1px solid black',
+        marginBottom: '20px',
+      }}
+    >
       <input
         placeholder="Name"
         onChange={(evt) =>
@@ -47,6 +54,6 @@ export default function Form({ parentPosts, updateParentPosts }) {
       >
         Submit
       </button>
-    </>
+    </div>
   );
 }
