@@ -1,33 +1,43 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './app.css';
 
+import Comment from './components/Comment.tsx';
+
+let id = -1;
+type Comment = {
+  id: number,
+  name: string,
+  body: string
+}
+
 function App() {
-  const [count, setCount] = useState(0);
+  const[commentName, setCommentName] = useState<string | null>('');
+  const[commentBody, setCommentBody] = useState<string | null>('');
+  const [comments, setComments] = useState<Comment[] | null>([]); 
 
   return (
     <>
+      <h1>React Comment App</h1>
+      <div style={{ display: 'flex', flexDirection: 'column', outline: '1px solid black', marginBottom: '20px'}}>
+        <input placeholder = "Name" onChange={(evt) => setCommentName(evt.target.value)} value={commentName}/>
+        <input onChange={(evt) => setCommentBody(evt.target.value)} value={commentBody}/>
+        <button onClick = {() => {
+          id++;
+          const comment: Comment = {id: id, name: commentName, body: commentBody};
+          setComments([comment, ...comments]);
+          setCommentName("");
+          setCommentBody("");
+        }}>Submit</button>
+      </div>
       <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        {comments.map((comment: Comment) => 
+          <Comment 
+            key={comment.id}
+            name={comment.name}
+            body={comment.body}
+          />
+        )}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   );
 }
