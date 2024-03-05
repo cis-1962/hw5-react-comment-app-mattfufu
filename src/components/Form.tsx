@@ -7,7 +7,7 @@ type Post = {
   body: string;
 };
 
-export default function Form({ parentPosts, updateParentPosts }) {
+export default function Form({ parentPosts, updateParentPosts }: {parentPosts: Post[], updateParentPosts: (posts: Post[]) => void}) {
   const [post, setPost] = useState<Post | null>({ id: -1, name: '', body: '' });
 
   return (

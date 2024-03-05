@@ -3,7 +3,6 @@ import { useState } from 'react';
 import Form from './Form.tsx';
 import Vote from './Vote.tsx';
 
-let id = -1;
 type Reply = {
   id: number;
   name: string;
@@ -50,13 +49,10 @@ export default function Post({ name, body }: { name: string; body: string }) {
           <div
             style={{ outline: '1px solid black', padding: '8px', flexGrow: 1 }}
           >
-            <button
-              onClick={() => setIsReplying(true)}
-            >
-              Reply</button>
+            <button onClick={() => setIsReplying(true)}>Reply</button>
             {isReplying && (
               <Form parentPosts={replies} updateParentPosts={setReplies} />
-            )}  
+            )}
           </div>
         </div>
         <Vote />
